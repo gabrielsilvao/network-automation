@@ -1,0 +1,12 @@
+- hosts: all
+  become: yes
+  tasks:
+  - name: apt install packages
+    apt:
+      name:
+        - dnsutils
+        - net-tools
+        - telnet
+        - ftp
+        - w3m
+      state: latest

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    build:
+      dockerfile: /etc/docker/web-python/nginx.docker.file
+      context: .
+    image: nginx-loadbalancing-image
+    container_name: nginx-loadbalacing
+      ports:
+        - "80:80"
+      networks:
+        - production-network
+
+networks:
+  production-network:
+    driver: bridge

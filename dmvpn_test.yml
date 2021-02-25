@@ -1,0 +1,128 @@
+- name: Router 1
+  hosts: RT1
+  tasks:
+
+    - name: Interface Tunnel 100
+      cli_command:
+        command: show ip interface brief | i Tunnel100
+      register: interface_rt1
+    - debug: msg="{{interface_rt1.stdout}}"
+    - local_action: copy content={{interface_rt1.stdout}} dest=/results/r1/interface_rt1.txt
+
+    - name: Show IPsec RT1
+      cli_command:
+        command: show crypto ipsec sa | i encaps
+      register: ipsec_rt1
+    - debug: msg="{{ipsec_rt1.stdout}}"
+    - local_action: copy content={{ipsec_rt1.stdout}} dest=/results/r1/ipsec_rt1.txt
+
+    - name: Show ISAKMP RT1
+      cli_command:
+        command: show crypto isakmp sa
+      register: isakmp_rt1
+    - debug: msg="{{isakmp_rt1.stdout}}"
+    - local_action: copy content={{isakmp_rt1.stdout}} dest=/results/r1/isakmp_rt1.txt
+
+    - name: PING RT2
+      cli_command:
+        command: ping 10.0.0.2
+      register: ping_rt1_rt2
+    - debug: msg="{{ping_rt1_rt2.stdout}}"
+    - local_action: copy content={{ping_rt1_rt2.stdout}} dest=/results/r1/ping_rt1_rt2.txt
+
+    - name: PING RT3
+      cli_command:
+        command: ping 10.0.0.3
+      register: ping_rt1_rt3
+    - debug: msg="{{ping_rt1_rt3.stdout}}"
+    - local_action: copy content={{ping_rt1_rt3.stdout}} dest=/results/r1/ping_rt1_rt3.txt
+
+    - name: Compile em resultado_rt1
+      shell: cat /results/r1/* > /results/r1/resultado_rt1.txt
+
+- name: Router 2
+  hosts: RT2
+  tasks:
+
+    - name: Interface Tunnel 100
+      cli_command:
+        command: show ip interface brief | i Tunnel100
+      register: interface_rt2
+    - debug: msg="{{interface_rt2.stdout}}"
+    - local_action: copy content={{interface_rt2.stdout}} dest=/results/r2/interface_rt2.txt
+
+    - name: Show IPsec RT2
+      cli_command:
+        command: show crypto ipsec sa | i encaps
+      register: ipsec_rt2
+    - debug: msg="{{ipsec_rt2.stdout}}"
+    - local_action: copy content={{ipsec_rt2.stdout}} dest=/results/r2/ipsec_rt2.txt
+
+    - name: Show ISAKMP RT2
+      cli_command:
+        command: show crypto isakmp sa
+      register: isakmp_rt2
+    - debug: msg="{{isakmp_rt2.stdout}}"
+    - local_action: copy content={{isakmp_rt2.stdout}} dest=/results/r2/isakmp_rt2.txt
+
+    - name: PING RT1
+      cli_command:
+        command: ping 10.0.0.1
+      register: ping_rt2_rt1
+    - debug: msg="{{ping_rt2_rt1.stdout}}"
+    - local_action: copy content={{ping_rt2_rt1.stdout}} dest=/results/r2/ping_rt2_rt1.txt
+    
+    - name: PING RT3
+      cli_command:
+        command: ping 10.0.0.3
+      register: ping_rt2_rt3
+    - debug: msg="{{ping_rt2_rt3.stdout}}"
+    - local_action: copy content={{ping_rt2_rt3.stdout}} dest=/results/r2/ping_rt2_rt3.txt
+
+    - name: Compile em resultado_rt2
+      shell: cat /results/r2/* > /results/r2/resultado_rt2.txt
+
+- name: Router 3
+  hosts: RT3
+  tasks:
+
+    - name: Interface Tunnel 100
+      cli_command:
+        command: show ip interface brief | i Tunnel100
+      register: interface_rt3
+    - debug: msg="{{interface_rt3.stdout}}"
+    - local_action: copy content={{interface_rt3.stdout}} dest=/results/r3/interface_rt3.txt
+
+    - name: Show IPsec RT3
+      cli_command:
+        command: show crypto ipsec sa | i encaps
+      register: ipsec_rt3
+    - debug: msg="{{ipsec_rt3.stdout}}"
+    - local_action: copy content={{ipsec_rt3.stdout}} dest=/results/r3/ipsec_rt3.txt
+
+    - name: Show ISAKMP RT3
+      cli_command:
+        command: show crypto isakmp sa
+      register: isakmp_rt3
+    - debug: msg="{{isakmp_rt3.stdout}}"
+    - local_action: copy content={{isakmp_rt3.stdout}} dest=/results/r3/isakmp_rt3.txt
+
+    - name: PING RT1
+      cli_command:
+        command: ping 10.0.0.1
+      register: ping_rt3_rt1
+    - debug: msg="{{ping_rt3_rt1.stdout}}"
+    - local_action: copy content={{ping_rt3_rt1.stdout}} dest=/results/r3/ping_rt3_rt1.txt
+
+    - name: PING RT2
+      cli_command:
+        command: ping 10.0.0.2
+      register: ping_rt3_rt2
+    - debug: msg="{{ping_rt3_rt2.stdout}}"
+    - local_action: copy content={{ping_rt3_rt2.stdout}} dest=/results/r3/ping_rt3_rt2.txt
+
+    - name: Compile em resultado_rt3
+      shell: cat /results/r3/* > /results/r3/resultado_rt3.txt
+
+    - name: Compile em resultado_geral
+      shell: echo "Resultado RT1" >> /results/resultado_geral.txt; cat /results/r1/resultado_rt1.txt >> /results/resultado_geral.txt; echo -e "\n\nResultado RT2" >> /results/resultado_geral.txt; cat /results/r2/resultado_rt2.txt >> /results/resultado_geral.txt; echo -e "\n\nResultado RT3" >> /results/resultado_geral.txt; cat /results/r3/resultado_rt3.txt >> /results/resultado_geral.txt
