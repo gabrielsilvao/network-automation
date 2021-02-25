@@ -15,3 +15,5 @@ ssh.connect(host, port, username, password)
 stdin, stdout, stderr = ssh.exec_command(command)
 lines = stdout.readlines()
 print(lines)
+
+# teste
