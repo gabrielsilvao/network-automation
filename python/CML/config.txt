@@ -1,0 +1,12 @@
+ip domain name wsc2021.com
+username senai132 password seletiva39
+username senai123 password seletiva39
+banner login motd # Bem-vindo ao dominio $(domain) #
+int loopback10
+ip add 1.1.1.1
+int loopback20
+ip add 2.2.2.2
+int loopback30
+ip add 3.3.3.3
+int loopback40
+ip add 4.4.4.4

@@ -1,0 +1,4 @@
+sh run | i username
+sh ip int brief
+sh run | s banner
+sh run | i domain
