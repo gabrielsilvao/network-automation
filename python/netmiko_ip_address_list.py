@@ -12,7 +12,7 @@ with open('devices.txt') as ip_list:
         print('-'*40, "\nConnecting to the device ", ip, '\n')
 
 
-        net_connect = ConnectHandler(devices)
+        net_connect = ConnectHandler(**devices)
         net_connect.enable()
 
         output = net_connect.send_command("show ip int br")
