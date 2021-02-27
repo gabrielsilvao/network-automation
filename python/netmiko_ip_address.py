@@ -2,8 +2,8 @@ from netmiko import ConnectHandler
 
 csr1000v = {
     "device_type": "cisco_ios",
-    "ip": "192.168.3.182",
-    "username": "admin",
+    "ip": "10.10.20.200",
+    "username": "cisco",
     "password": "cisco",
     "secret": "cisco",
 }
