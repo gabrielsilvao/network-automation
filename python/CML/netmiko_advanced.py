@@ -15,19 +15,13 @@ with open('devices.txt') as ip_list:
         net_connect.enable()
 
 # Read lines from configuration file 'config.txt' and send to the target router
-        with open("config.txt") as config_lines:
-            config = config_lines.read()
+        with open('config.txt','r') as config_lines:
+            config = config_lines.readlines()
         output = net_connect.send_config_set(config)
         print(output)
 
 # Display the interfaces configured
-        with open("verify.txt") as verify_lines:
-            verify = config_lines.read()
+        with open('verify.txt','r') as verify_lines:
+            verify = config_lines.readlines()
         output = net_connect.send_config_set(verify)
         print(output)
-
-# Old stuff
-'''
-        output = net_connect.send_command("show ip int br")
-        print(output)
-'''
