@@ -1,0 +1,5 @@
+username cisco privilege 15 password cisco
+login block-for 30 attempts 3 within 20
+banner motd # Bem vindo ao $(hostname), no dominio $(domain) #
+banner login # Bem vindo #
+ipv6 unicast-routing
