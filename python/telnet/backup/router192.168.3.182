@@ -1,0 +1,217 @@
+
+csr1000v>terminal length 0
+csr1000v>en
+Password: 
+csr1000v#show run
+Building configuration...
+
+Current configuration : 4026 bytes
+!
+! Last configuration change at 11:48:04 UTC Mon Mar 1 2021
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname csr1000v
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable password cisco
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1649386311
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1649386311
+ revocation-check none
+ rsakeypair TP-self-signed-1649386311
+!
+!
+crypto pki certificate chain TP-self-signed-1649386311
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31363439 33383633 3131301E 170D3231 30323236 31383430 
+  33395A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 36343933 
+  38363331 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100C2E3 F953465C 15DF81A0 C774840D 05BEDC71 E6238C07 535D118D 
+  DE69E517 970EB1F6 55702CF1 8D4E68B5 67268C12 946E465B 9E82C680 97376EBC 
+  5BD95B14 9BA299D5 7A413647 FBDDA93F 67C0418C 27E9D2B0 4FA2CD7B 446824DC 
+  070E1F2B 65B39674 355FE26A 60B1E405 AD2F783F 8E600CC5 895F09D8 75AB91B5 
+  F9414C79 67EFC922 49454053 2938B26C 611BC6B9 0F536FA6 FB688775 94F157BF 
+  E23B290A 7B379457 CD567685 603BD2B0 73711155 64146DB3 B92923D9 C5CFCE0F 
+  8BC9A98B 88BF68A6 7C33023F A7019E52 8C62F752 934E2395 E5CCF8A8 27A863CA 
+  0664977A FF542A6F 68DD18A6 FFF6611E 64C277FA B242AEC3 29AABE77 BEBE238E 
+  81CA78DA CC730203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 1485EC91 F14A4629 44609F24 7C55EBD5 330D6B63 
+  BA301D06 03551D0E 04160414 85EC91F1 4A462944 609F247C 55EBD533 0D6B63BA 
+  300D0609 2A864886 F70D0101 05050003 82010100 746D5B6C 9DE20D12 0EE984D0 
+  1A32DC97 96473DDE A911EBED 8EB25281 EF48F7A0 D05C1D7D 3D9A1E8A 3678DB68 
+  7ABDF632 E954510F 0BE4655F 762BABEA F0381390 D97A6F0A 8A9E8254 B7765624 
+  C88D7E21 3EB162E3 078BC2DE ACCBE995 1E11F90F 3160DCAE E8B96BCD 7F7405E6 
+  9D1BA057 765D311A A4C9CD7C 0445A953 D656D70E 6C51CD90 1EB9E816 B31A8053 
+  4052587C 6E7A8937 C9883A89 B2B68FA2 3C040E97 8F573944 02298746 724FA295 
+  9A77DA1A A8EC565C EF1F67A0 520175E5 E29B16B0 027ED742 44459155 27BD3204 
+  324BA955 D4571F7F 786DC312 CCBDFE0A 89788C91 EA3A3541 474DE738 DE8906AE 
+  EF5683EB 28845A94 A5B4D43C D7B6F064 904B3D66
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9C4M6LU1F0B
+license boot level ax
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+netconf-yang
+!
+!
+username admin password 0 cisco
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+!
+interface Loopback1
+ ip address 2.2.2.2 255.255.255.255
+!
+interface Loopback10
+ ip address 10.10.10.1 255.255.255.255
+!
+interface Loopback20
+ ip address 10.10.20.1 255.255.255.255
+!
+interface Loopback30
+ ip address 10.10.30.1 255.255.255.255
+!
+interface Loopback40
+ ip address 10.10.40.1 255.255.255.255
+!
+interface Loopback50
+ ip address 10.10.50.1 255.255.255.255
+!
+interface GigabitEthernet1
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0
+ login local
+ transport input all
+line vty 1
+ login local
+ length 0
+ transport input all
+line vty 2 4
+ login local
+ transport input all
+!
+!
+!
+!
+!
+!
+end
+
+csr1000v#exit
+

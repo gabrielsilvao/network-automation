@@ -1,0 +1,12 @@
+en
+cisco
+conf t
+int loopback5
+ip add 5.5.5.5 255.255.255.255
+no shut
+int loopback6
+ip add 6.6.6.6 255.255.255.255
+no shut
+exit
+banner login # Banner de login #
+banner motd # Banner $(domain) #
