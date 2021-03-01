@@ -11,8 +11,17 @@ for IP in f:
     print ('Get running config from Router ' + (IP))
     HOST = IP
     tn = telnetlib.Telnet(HOST)
-    tn.read_until(b'Username: ')
-    tn.write(user.encode('ascii') + b'\n')
+    try:
+        response = tn.read_until("login: ", timeout=120)
+    except EOFError as e:
+        print("Connection closed: %s" % e)
+    if "login: " in response:
+        tn.write(user.encode('ascii') + b'\n')
+    else:
+        tn.read_until(b'Username: ')
+        tn.write(user.encode('ascii') + b'\n') 
+#    tn.read_until(b'Username: ')
+#    tn.write(user.encode('ascii') + b'\n')
     if password:
         tn.read_until(b'Password: ')
         tn.write(password.encode('ascii') + b'\n')  
