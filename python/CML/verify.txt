@@ -1,4 +1,4 @@
-sh run | i username
-sh ip int brief
-sh run | s banner
-sh run | i domain
+do sh run | i username
+do sh ip int brief
+do sh run | s banner
+do sh run | i domain

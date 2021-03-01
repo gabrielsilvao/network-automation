@@ -1,6 +1,6 @@
 from netmiko import ConnectHandler
 
-with open('devices.txt') as ip_list:
+with open('devices.txt','r') as ip_list:
     for ip in ip_list:
         devices = {
             "device_type": "cisco_ios",
@@ -20,8 +20,9 @@ with open('devices.txt') as ip_list:
         output = net_connect.send_config_set(config)
         print(output)
 
+
 # Display the interfaces configured
         with open('verify.txt','r') as verify_lines:
-            verify = config_lines.readlines()
+            verify = verify_lines.readlines()
         output = net_connect.send_config_set(verify)
         print(output)
