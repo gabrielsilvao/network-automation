@@ -1,0 +1,31 @@
+hostname R1
+enable password cisco
+ip domain-name wsc2022.com
+crypto key gen rsa mod 1024
+line vty 0 15
+login local
+transport input all
+username admin privilege 15 password cisco
+access-list 1 permit any
+ip nat inside source list 1 interface g0/0 overload
+ip nat inside source static tcp 10.10.20.200 2023 200.0.1.1 22
+ip nat inside source static tcp 10.10.20.200 2024 200.0.0.1 22
+ip nat inside source static tcp 10.10.20.200 2025 10.0.0.1 22
+ip nat inside source static tcp 10.10.20.200 2026 10.0.1.1 22
+int g0/0
+ip nat outside
+ip add 10.10.20.200 255.255.255.0
+no shut
+int g0/1
+ip nat inside
+ip address 200.0.1.254 255.255.255.0
+no shut
+int g0/2
+ip nat inside
+ip address 200.0.0.254 255.255.255.0
+no shut
+router ospf 1
+network 200.0.0.0 0.0.0.255 area 0
+network 200.0.1.0 0.0.0.255 area 0
+network 10.10.20.0 0.0.0.255 area 10
+passive-interface g0/0
