@@ -1,0 +1,9 @@
+hostname matriz
+username admin password cisco
+int g0/0
+ip address 10.0.1.1 255.255.255.252
+no shut
+exit
+ip route 0.0.0.0 0.0.0.0 10.0.1.2
+router ospf 1
+network 10.0.1.0 0.0.0.3 area 15

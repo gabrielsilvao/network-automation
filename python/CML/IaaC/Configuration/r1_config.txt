@@ -1,0 +1,21 @@
+hostname R1
+username admin password cisco
+access-list 1 permit any
+ip nat inside source list 1 interface g0/0 overload
+int g0/0
+ip nat outside
+ip add 10.10.20.200 255.255.255.0
+no shut
+int g0/1
+ip nat inside
+ip address 200.0.1.254 255.255.255.0
+no shut
+int g0/2
+ip nat inside
+ip address 200.0.0.254 255.255.255.0
+no shut
+router ospf 1
+network 200.0.0.0 0.0.0.255 area 0
+network 200.0.1.0 0.0.0.255 area 0
+network 10.10.20.0 0.0.0.255 area 10
+passive-interface g0/0

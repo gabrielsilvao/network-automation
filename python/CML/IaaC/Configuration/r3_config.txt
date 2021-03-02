@@ -1,0 +1,11 @@
+hostname R3
+username admin password cisco
+int g0/0
+ip address 200.0.0.1 255.255.255.0
+no shut
+int g0/1
+ip address 10.0.1.2 255.255.255.252
+no shut
+router ospf 1
+network 200.0.0.0 0.0.0.255 area 0
+network 10.0.1.0 0.0.0.3 area 15
