@@ -1,0 +1,7 @@
+login block-for 5 attempts 2 within 5
+ipv6 unicast-routing
+username admin privilege 15 password cisco
+line con 0
+loggin synchronous level 7
+line vty 0 15
+exec-timeout 15
